@@ -1,1 +1,2 @@
-# Water-Potability
+# Water-Potability-Project
+I had done this project for data analytics course. In this project I'm trying to figure out what are the factors that majorly affect the potability of water. I have also written a machine learning algorithm which predicts whether the water is safe for drinking or not using DecisionTreeClassifier. At the end I have plotted the tree to give an idea about how the decision tree algorithm works.
