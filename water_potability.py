@@ -30,8 +30,8 @@ st.sidebar.header('Water Quality Metrics')
 #Taking user inputs form the side
 
 def user_input_features():
-    ph = st.sidebar.slider('ph', df.ph.min(), df.ph.max(), df.ph.median())
     Hardness = st.sidebar.slider('Hardness', df.Hardness.min(), df.Hardness.max(), df.Hardness.median())
+    ph = st.sidebar.slider('ph', df.ph.min(), df.ph.max(), df.ph.median())
     Solids = st.sidebar.slider('Solids', df.Solids.min(), df.Solids.max(), df.Solids.median())
     Chloramines = st.sidebar.slider('Chloramines', df.Chloramines.min(), df.Chloramines.max(), df.Chloramines.median())
     Sulfate = st.sidebar.slider('Sulfate', df.Sulfate.min(), df.Sulfate.max(), df.Sulfate.median())
