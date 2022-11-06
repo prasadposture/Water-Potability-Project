@@ -29,15 +29,15 @@ st.sidebar.header('Water Quality Metrics')
 
 #Taking user inputs form the side
 def user_input_features():
-    PH = st.sidebar.slider('PH', df.PH.min(), df.PH.max(), df.PH.median())
-    Hardness = st.sidebar.slider('Hardness', df.Hardness.min(), df.Hardness.max(), df.Hardness.median())
-    Solids = st.sidebar.slider('Solids', df.Solids.min(), df.Solids.max(), df.Solids.median())
-    Chloramines = st.sidebar.slider('Chloramines', df.Chloramines.min(), df.Chloramines.max(), df.Chloramines.median())
-    Sulfate = st.sidebar.slider('Sulfate', df.Sulfate.min(), df.Sulfate.max(), df.Sulfate.median())
-    Conductivity = st.sidebar.slider('Conductivity', df.Conductivity.min(), df.Conductivity.max(), df.Conductivity.median())
-    Organic_carbon = st.sidebar.slider('Organic_carbon', df.Organic_carbon.min(), df.Organic_carbon.max(), df.Organic_carbon.median())
-    Trihalomethanes = st.sidebar.slider('Trihalomethanes', df.Trihalomethanes.min(), df.Trihalomethanes.max(), df.Trihalomethanes.median())
-    Turbidity = st.sidebar.slider('Turbidity', df.Turbidity.min(), df.Turbidity.max(), df.Turbidity.median())
+    PH = st.sidebar.slider('PH', df.PH.min(), df.PH.max(), df.PH.median()),
+    Hardness = st.sidebar.slider('Hardness', df.Hardness.min(), df.Hardness.max(), df.Hardness.median()),
+    Solids = st.sidebar.slider('Solids', df.Solids.min(), df.Solids.max(), df.Solids.median()),
+    Chloramines = st.sidebar.slider('Chloramines', df.Chloramines.min(), df.Chloramines.max(), df.Chloramines.median()),
+    Sulfate = st.sidebar.slider('Sulfate', df.Sulfate.min(), df.Sulfate.max(), df.Sulfate.median()),
+    Conductivity = st.sidebar.slider('Conductivity', df.Conductivity.min(), df.Conductivity.max(), df.Conductivity.median()),
+    Organic_carbon = st.sidebar.slider('Organic_carbon', df.Organic_carbon.min(), df.Organic_carbon.max(), df.Organic_carbon.median()),
+    Trihalomethanes = st.sidebar.slider('Trihalomethanes', df.Trihalomethanes.min(), df.Trihalomethanes.max(), df.Trihalomethanes.median()),
+    Turbidity = st.sidebar.slider('Turbidity', df.Turbidity.min(), df.Turbidity.max(), df.Turbidity.median()),
     data = {'PH': PH,
             'Hardness': Hardness,
             'Solids': Solids,
