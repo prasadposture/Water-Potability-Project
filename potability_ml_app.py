@@ -3,8 +3,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import seaborn as sns
-sns.set_style('darkgrid')
+sns.set_style('whitegrid')
 from matplotlib import pyplot as plt
+
 #setting page configuration
 st.set_page_config(page_title='Water Potability', page_icon=':droplet:')
 
@@ -29,15 +30,15 @@ st.sidebar.header('Water Quality Metrics')
 
 #Taking user inputs form the side
 def user_input_features():
-    PH = st.sidebar.slider('PH', df.PH.min(), df.PH.max(), df.PH.median())
-    Hardness = st.sidebar.slider('Hardness', df.Hardness.min(), df.Hardness.max(), df.Hardness.median())
-    Solids = st.sidebar.slider('Solids', df.Solids.min(), df.Solids.max(), df.Solids.median())
-    Chloramines = st.sidebar.slider('Chloramines', df.Chloramines.min(), df.Chloramines.max(), df.Chloramines.median())
-    Sulfate = st.sidebar.slider('Sulfate', df.Sulfate.min(), df.Sulfate.max(), df.Sulfate.median())
-    Conductivity = st.sidebar.slider('Conductivity', df.Conductivity.min(), df.Conductivity.max(), df.Conductivity.median())
-    Organic_carbon = st.sidebar.slider('Organic_carbon', df.Organic_carbon.min(), df.Organic_carbon.max(), df.Organic_carbon.median())
-    Trihalomethanes = st.sidebar.slider('Trihalomethanes', df.Trihalomethanes.min(), df.Trihalomethanes.max(), df.Trihalomethanes.median())
-    Turbidity = st.sidebar.slider('Turbidity', df.Turbidity.min(), df.Turbidity.max(), df.Turbidity.median())
+    PH = st.sidebar.slider('PH',0.00, 14.00, 7.04)
+    Hardness = st.sidebar.slider('Hardness',47.43,323.12,196.97)
+    Solids = st.sidebar.slider('Solids',320.94,61227.20,20927.83)
+    Chloramines = st.sidebar.slider('Chloramines',0.35,13.13,7.13 )
+    Sulfate = st.sidebar.slider('Sulfate',129.00,481.03,333.39)
+    Conductivity = st.sidebar.slider('Conductivity',181.48,753.34,421.88)
+    Organic_carbon = st.sidebar.slider('Organic_carbon',2.20,28.30,14.22)
+    Trihalomethanes = st.sidebar.slider('Trihalomethanes',0.74,124.00,66.54)
+    Turbidity = st.sidebar.slider('Turbidity',1.45,6.74,3.96)
     data = {'PH': PH,
             'Hardness': Hardness,
             'Solids': Solids,
