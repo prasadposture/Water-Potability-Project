@@ -13,14 +13,14 @@ st.set_page_config(page_title='Water Potability', page_icon=':droplet:')
 markdown='''
 <style>
 [data-testid="stAppViewContainer"]{
-background-color:#7FFFD4;
+background-color:#AFEEEE;
 color:#000000;
 }
 [data-testid="stHeader"]{
 opacity:0.0;
 }
 [data-testid="stSidebar"]{
-background-color:#40E0D0;
+background-color:#7FFFD4;
 }
 [data-testid="stTickBarMin"]{
 color:#000000;
