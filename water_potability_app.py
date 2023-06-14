@@ -9,6 +9,34 @@ from matplotlib import pyplot as plt
 #setting page configuration
 st.set_page_config(page_title='Water Potability', page_icon=':droplet:')
 
+
+markdown='''
+<style>
+[data-testid="stAppViewContainer"]{
+background-color:#7FFFD4;
+color:#000000;
+}
+[data-testid="stHeader"]{
+opacity:0.0;
+}
+[data-testid="stSidebar"]{
+background-color:#40E0D0;
+}
+[data-testid="stTickBarMin"]{
+color:#000000;
+}
+[data-testid="stTickBarMax"]{
+color:#000000;
+}
+[data-testid="stThumbValue"]{
+color:#000000;
+}
+</style>
+
+'''
+
+st.markdown(markdown,unsafe_allow_html=True)
+
 #loading the preprocessed data
 df=pd.read_csv('water_potability_preprocessed.csv')
 
