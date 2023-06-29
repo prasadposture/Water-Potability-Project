@@ -19,15 +19,14 @@ st.set_page_config(page_title='Water Potability', page_icon=':droplet:')
 markdown='''
 <style>
 [data-testid="stAppViewContainer"]{
-background-color:#AFEEEE;
+background-image: linear-gradient(to bottom right, #b3ffff, #009999);
 color:#000000;
 }
 [data-testid="stHeader"]{
 opacity:0.0;
 }
 [data-testid="stSidebar"]{
-background-color:#7FFFD4;
-border:1px solid rgb(12,208,219);
+background-image: linear-gradient(to bottom right, #b3ffff, #009999);
 }
 [class="css-nqowgj edgvbvh3"]{
 border: 1px solid rgb(12,208,219);
