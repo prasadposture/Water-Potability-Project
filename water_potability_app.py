@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import plotly.express as px
 sns.set_style('whitegrid')
 from matplotlib import pyplot as plt
 import joblib as jb
@@ -40,6 +41,9 @@ color:#000000;
 }
 [data-testid="stThumbValue"]{
 color:#000000;
+}
+[class="main-svg"]{
+opacity:0.9
 }
 </style>
 
@@ -113,32 +117,22 @@ with st.container():
     with l:
         option1=st.selectbox('On X Axis',('ph','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
     with m:
-        option2=st.selectbox('On Y Axis',('PH','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
+        option2=st.selectbox('On Y Axis',('ph','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
     with r:
-        option4=st.selectbox('Type of Plot', ('KDE Plot (X Axis)','Histplot (X Axis)','Scatterplot', 'Barplot (Y Axis)','Boxplot (Y Axis)' ))
+        option4=st.selectbox('Type of Plot', ('Histplot (X Axis)','Scatterplot', 'Barplot (Y Axis)','Boxplot (Y Axis)' ))
 #Plots
 if option4=='Boxplot (Y Axis)':
-    sns.boxplot(data=df, y=option2, x='Potability')
-    plt.title('Boxplot of '+option2)
-    st.pyplot(plt.gcf())
+    fig = px.box(data_frame=df, y=option2, x='Potability', color='Potability')
 elif option4=='Scatterplot':
-    sns.scatterplot(data=df, x=option1, y=option2, hue='Potability',alpha=0.5)
-    plt.title(option1+' vs '+option2)
-    st.pyplot(plt.gcf())
-elif option4=='KDE Plot (X Axis)':
-    sns.kdeplot(data=df, x=option1, hue='Potability')
-    plt.title('Distribution of '+option1)
-    st.pyplot(plt.gcf())
+    fig = px.scatter(data_frame=df, x=option1, y=option2, color='Potability')
 elif option4=='Histplot (X Axis)':
-    sns.histplot(data=df, x=option1, hue='Potability')
-    plt.title('Histplot of '+option1)
-    st.pyplot(plt.gcf())
+    fig = px.histogram(data_frame=df, x=option1, color='Potability')
 elif option4=='Barplot (Y Axis)':
-    sns.barplot(data=df, y=option2, x='Potability')
-    plt.title('Barplot of '+option2)
-    st.pyplot(plt.gcf())
+    fig = px.bar(data_frame=df, y=option2, x='Potability', color='Potability')
 else:
     pass
+st.plotly_chart(fig, use_container_width=True, theme=None)
+
 st.write('___')
 st.write('### Statistical Information :')
 if st.button('Potable Water'):
