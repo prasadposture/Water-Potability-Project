@@ -5,6 +5,12 @@ import numpy as np
 import seaborn as sns
 sns.set_style('whitegrid')
 from matplotlib import pyplot as plt
+import joblib as jb
+wpp = jb.load("water_potability_predictor.joblib")
+model = wpp['model']
+scaler = wpp['scaler']
+input_cols = wpp['input_cols']
+
 
 #setting page configuration
 st.set_page_config(page_title='Water Potability', page_icon=':droplet:')
@@ -21,6 +27,11 @@ opacity:0.0;
 }
 [data-testid="stSidebar"]{
 background-color:#7FFFD4;
+border:1px solid rgb(12,208,219);
+}
+[class="css-nqowgj edgvbvh3"]{
+border: 1px solid rgb(12,208,219);
+border-radius: 5px;
 }
 [data-testid="stTickBarMin"]{
 color:#000000;
@@ -37,28 +48,19 @@ color:#000000;
 
 st.markdown(markdown,unsafe_allow_html=True)
 
-#loading the preprocessed data
-df=pd.read_csv('water_potability_preprocessed.csv')
 
 st.write("""# Water Potability""")
 
 st.write("___")
 
-#seperating the dependent anad independant variables
-x=df.drop('Potability',axis=1)
-Y=df['Potability']
 
-#fitting the model
-from sklearn.ensemble import RandomForestClassifier
-clf=RandomForestClassifier(random_state=3)
-clf=clf.fit(x, Y)
 
 #creating sidebar
 st.sidebar.header('Water Quality Metrics')
 
 #Taking user inputs form the side
 def user_input_features():
-    PH = st.sidebar.slider('PH',0.00, 14.00, 7.04)
+    ph = st.sidebar.slider('ph',0.00, 14.00, 7.04)
     Hardness = st.sidebar.slider('Hardness',47.43,323.12,196.97)
     Solids = st.sidebar.slider('Solids',320.94,61227.20,20927.83)
     Chloramines = st.sidebar.slider('Chloramines',0.35,13.13,7.13 )
@@ -67,7 +69,7 @@ def user_input_features():
     Organic_carbon = st.sidebar.slider('Organic_carbon',2.20,28.30,14.22)
     Trihalomethanes = st.sidebar.slider('Trihalomethanes',0.74,124.00,66.54)
     Turbidity = st.sidebar.slider('Turbidity',1.45,6.74,3.96)
-    data = {'PH': PH,
+    data = {'ph': ph,
             'Hardness': Hardness,
             'Solids': Solids,
             'Chloramines': Chloramines,
@@ -83,11 +85,12 @@ df1 = user_input_features()
 
 st.write('### Water Quality Metrics :')
 st.write(df1)
+def predictor(df):
+    df[input_cols] = scaler.transform(df[input_cols])
+    predictions = model.predict(df[input_cols])
+    return predictions[0]
 
-#Makinf predictions
-prediction = clf.predict(df1)
-prediction_proba = clf.predict_proba(df1)
-st.write("___")
+prediction=predictor(df1)
 
 st.write('### Prediction :')
 if prediction==0:
@@ -96,18 +99,20 @@ else:
     st.write("##### Water is potable :innocent:")
 st.write("___")
 st.write('### Prediction Probability :')
+prediction_proba = model.predict_proba(df1)
 st.write(prediction_proba)
 st.write("0 : Not Potable")
 st.write("1 : Potable")
 
 st.write('___')
 
+df = pd.read_csv('water_potability_preprocessed.csv')
 #Data Visualization Inputs
 st.write('### Data Visualization :')
 with st.container():
     l,m,r=st.columns(3)
     with l:
-        option1=st.selectbox('On X Axis',('PH','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
+        option1=st.selectbox('On X Axis',('ph','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
     with m:
         option2=st.selectbox('On Y Axis',('PH','Hardness','Solids','Chloramines','Sulfate','Conductivity','Organic_carbon','Trihalomethanes','Turbidity'))
     with r:
